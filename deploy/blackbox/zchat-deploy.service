@@ -1,0 +1,11 @@
+[Unit]
+Description=Z Chat GitHub pull deploy
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# The build (npm install + vite build) can take minutes on the box; the
+# deploy script waits for it, so the unit must not time out.
+TimeoutStartSec=30min
+ExecStart=/usr/local/sbin/zchat-deploy
